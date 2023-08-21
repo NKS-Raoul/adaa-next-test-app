@@ -1,6 +1,6 @@
 'use client'
 import { Product } from "@/types";
-import { Avatar, Spinner, Table } from "flowbite-react"
+import { Alert, Avatar, Spinner, Table } from "flowbite-react"
 import { useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchProducts } from '@/redux/productSlice'
@@ -57,6 +57,22 @@ export function ProductComponent() {
                     </Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
+                    {
+                        entities.length === 0 && (
+                            <Table.Row className="">
+                                <Table.Cell colSpan={7} >
+                                    <Alert color="info">
+                                        <p>
+                                            <span className="font-bold">
+                                                Info alert! &nbsp;
+                                            </span>
+                                            No result
+                                        </p>
+                                    </Alert>
+                                </Table.Cell>
+                            </Table.Row>
+                        )
+                    }
                     {entities.map((ele: any) => (
                         <Table.Row className="" key={ele.id}>
                             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
