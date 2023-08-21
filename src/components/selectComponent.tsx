@@ -8,8 +8,6 @@ export default function SelectComponent() {
     const { limit, skip } = useSelector((state: any) => state.product);
     const dispatch = useDispatch();
 
-    console.log(limit, " ============ limit")
-
     const handleLimitInStore = async function (e: any) {
         dispatch(setLimit(parseInt(e.target.value)))
         dispatch(setLoading(true))
@@ -32,7 +30,7 @@ export default function SelectComponent() {
             <div className="mb-2 block">
                 <Label
                     htmlFor="nomberOfElement"
-                    value={"Select the number of element " + limit}
+                    value="Select the number of element "
                 />
             </div>
             <Select

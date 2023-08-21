@@ -6,7 +6,6 @@ export const fetchProducts = createAsyncThunk(
         const response = await fetch(
             "https://dummyjson.com/products?limit=" + initialState.limit + "&skip=" + initialState.skip
         ).then(res => res.json());
-        console.log("Raoul is here !!!")
         return response.products;
     }
 );
@@ -29,7 +28,6 @@ const productSlice = createSlice({
             state.skip = action.payload;
         },
         setEntities: (state, action) => {
-            console.log("Renew datas !!!")
             state.entities = [...action.payload];
         },
         setLoading: (state, action) => {

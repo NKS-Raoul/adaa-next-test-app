@@ -16,22 +16,19 @@ export default function Home() {
 
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start border-black">
-      <div className="container flex flex-col items-center border-black my-4">
-        {/*  */}
+    <main className="flex min-h-screen flex-col items-center justify-start ">
+      <div className="container flex flex-col items-center  my-4">
         <div className="flex items-center justify-between w-3/4">
-          <div className='border-black w-80'>
+          <div className=' w-80'>
             <SelectComponent />
           </div>
-          <div className='border-black w-80'>
+          <div className=' w-80'>
             <SearchInputComponent />
           </div>
         </div>
-        {/*  */}
-        <div className='my-8 w-3/4 border-2 border-black'>
+        <div className='my-8 w-3/4'>
           <ProductComponent />
         </div>
-        {/*  */}
         <div className='w-3/4'>
           <div className='flex'>
             <PaginationComponent />

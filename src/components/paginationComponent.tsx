@@ -10,8 +10,6 @@ export default function PaginationComponent() {
     const { limit, skip } = useSelector((state: any) => state.product);
     const dispatch = useDispatch();
 
-    console.log(limit, " ============ limit")
-
     const previous = async function () {
         dispatch(setSkip(skip - 1))
         dispatch(setLoading(true))

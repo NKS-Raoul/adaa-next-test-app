@@ -13,8 +13,6 @@ export function ProductComponent() {
     const dispatch = useDispatch<AppDispatch>();
     const { entities, loading } = useSelector((state: RootState) => state.product)
 
-    console.log("   sssssssssssssssssssss ================ ", entities)
-
 
     useEffect(() => {
         if (!ref.current) {

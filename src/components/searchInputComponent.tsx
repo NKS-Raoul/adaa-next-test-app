@@ -2,20 +2,20 @@
 
 import { setEntities, setLoading } from '@/redux/productSlice';
 import { Label, TextInput } from 'flowbite-react';
-import { useRef } from 'react';
+import { useState } from 'react';
 import { HiSearch } from 'react-icons/hi';
 import { useDispatch } from 'react-redux';
 
 export default function SearchInputComponent() {
 
     const dispatch = useDispatch();
-    const textRef = useRef(null);
+    const [search, setSearch] = useState("");
 
     const handleSearch = async function () {
         dispatch(setLoading(true))
-        if (textRef.current.value !== "") {
-            const response = await fetch(
-                "https://dummyjson.com/products/search?q=" + textRef.current.value
+        if (search !== "") {
+            await fetch(
+                "https://dummyjson.com/products/search?q=" + search
             ).then(res => res.json()).then(res => {
                 dispatch(setEntities(res.products))
             });
@@ -29,7 +29,7 @@ export default function SearchInputComponent() {
             <div className="mb-2 block">
                 <Label
                     htmlFor="email4"
-                    value="Tape to search ... "
+                    value="Tape to search ..."
                 />
             </div>
             <div className="flex justify-between">
@@ -38,7 +38,8 @@ export default function SearchInputComponent() {
                     placeholder="Search"
                     className='rounded-r-none'
                     style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
-                    ref={textRef}
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
                     required
                     type="search"
                 />

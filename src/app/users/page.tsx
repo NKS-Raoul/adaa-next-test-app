@@ -1,5 +1,4 @@
 
-import TableComponent from '@/components/tableComponent'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -16,3 +15,12 @@ export default function Raoul() {
         </main>
     )
 }
+
+
+/**
+ * 
+ * 
+ * Juste pour comprendre les nouvelles modification 
+ * 
+ * 
+ */
