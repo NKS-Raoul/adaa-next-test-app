@@ -1,24 +1,17 @@
 
 import PaginationComponent from '@/components/paginationComponent'
 import SearchInputComponent from '@/components/searchInputComponent'
-import DropdownComponent from '@/components/selectComponent'
+import SelectComponent from '@/components/selectComponent'
 import ProductComponent from '@/components/tableComponent'
-import { GetServerSideProps, Metadata } from 'next'
+import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'HOME | ADAA NextJS Test App',
   description: 'Make by NK$_R@0ul',
 }
 
-async function fetchDatas() {
-  let a = await fetch("https://dummyjson.com/products?limit=10&skip=5").then(res => res.json())
 
-  return a;
-}
-
-
-export default async function Home() {
-  const datas = await fetchDatas();
+export default function Home() {
 
 
 
@@ -28,7 +21,7 @@ export default async function Home() {
         {/*  */}
         <div className="flex items-center justify-between w-3/4">
           <div className='border-black w-80'>
-            <DropdownComponent />
+            <SelectComponent />
           </div>
           <div className='border-black w-80'>
             <SearchInputComponent />
@@ -36,7 +29,7 @@ export default async function Home() {
         </div>
         {/*  */}
         <div className='my-8 w-3/4 border-2 border-black'>
-          <ProductComponent products={datas.products} />
+          <ProductComponent />
         </div>
         {/*  */}
         <div className='w-3/4'>

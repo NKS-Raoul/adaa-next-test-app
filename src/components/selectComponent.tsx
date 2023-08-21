@@ -1,9 +1,29 @@
 'use client';
+import { setLimit, setEntities, setLoading } from '@/redux/productSlice';
+import { Label, Select } from 'flowbite-react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { Dropdown, Label, Select } from 'flowbite-react';
-import { DropdownItem } from 'flowbite-react/lib/esm/components/Dropdown/DropdownItem';
+export default function SelectComponent() {
 
-export default function DropdownComponent() {
+    const { limit, skip } = useSelector((state: any) => state.product);
+    const dispatch = useDispatch();
+
+    console.log(limit, " ============ limit")
+
+    const handleLimitInStore = async function (e: any) {
+        dispatch(setLimit(parseInt(e.target.value)))
+        dispatch(setLoading(true))
+        const response = await fetch(
+            "https://dummyjson.com/products?limit=" + e.target.value + "&skip=" + (skip * parseInt(e.target.value))
+        ).then(res => res.json()).then(res => {
+            dispatch(setEntities(res.products))
+        });
+        dispatch(setLoading(false))
+    }
+
+
+
+
     return (
         <div
             className="max-w-lg"
@@ -12,23 +32,24 @@ export default function DropdownComponent() {
             <div className="mb-2 block">
                 <Label
                     htmlFor="nomberOfElement"
-                    value="Select the number of element"
+                    value={"Select the number of element " + limit}
                 />
             </div>
             <Select
                 id="nomberOfElement"
                 required
+                onChange={handleLimitInStore}
             >
-                <option>
+                <option value={5}>
                     5
                 </option>
-                <option>
+                <option value={10}>
                     10
                 </option>
-                <option>
+                <option value={15}>
                     15
                 </option>
-                <option>
+                <option value={20}>
                     20
                 </option>
             </Select>
