@@ -15,7 +15,7 @@ export default function PaginationComponent() {
     const previous = async function () {
         dispatch(setSkip(skip - 1))
         dispatch(setLoading(true))
-        const response = await fetch(
+        await fetch(
             "https://dummyjson.com/products?limit=" + limit + "&skip=" + ((skip - 1) * limit)
         ).then(res => res.json()).then(res => {
             dispatch(setEntities(res.products))
@@ -26,7 +26,7 @@ export default function PaginationComponent() {
     const next = async function () {
         dispatch(setSkip(skip + 1))
         dispatch(setLoading(true))
-        const response = await fetch(
+        await fetch(
             "https://dummyjson.com/products?limit=" + limit + "&skip=" + ((skip + 1) * limit)
         ).then(res => res.json()).then(res => {
             dispatch(setEntities(res.products))
